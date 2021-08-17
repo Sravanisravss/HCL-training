@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.supplier.dto.SupplierDto;
 import com.supplier.service.SupplierService;
 
-
 @RestController
 @RequestMapping("/supplier")
 public class SupplierController {
@@ -36,24 +35,21 @@ public class SupplierController {
 
 	}
 
-	
-	 @GetMapping("/getsupplier/{id}")
-	 public List<SupplierDto> getSuppliers(@PathVariable int id) {
-	 return service.getSuppliers();
-	}
-	 
-	 @GetMapping("/getsupplier/{name}") 
-	 public List<SupplierDto> getSuppliers(@PathVariable String name) {
-	 return service.getSuppliers(); }
-	 
+	/*
+	 * @GetMapping("/getsupplier/{id}") public List<SupplierDto>
+	 * getSuppliers(@PathVariable int id) { return service.getSuppliers(); }
+	 * 
+	 * @GetMapping("/getsupplier/{name}") public List<SupplierDto>
+	 * getSuppliers(@PathVariable String name) { return service.getSuppliers(); }
+	 */
 
 	@PutMapping("/update")
-	public SupplierDto updateSupplier(@RequestBody SupplierDto supplier) {
-		return service.updateSupplier(supplier);
+	public SupplierDto updateSupplier(@PathVariable("id") int id, @RequestBody SupplierDto supplier) {
+		return service.updateSupplier(id, supplier);
 	}
 
 	@DeleteMapping("/delete/{id}")
 	public void deleteSupplier(@PathVariable int id) {
-		 service.deleteSupplier(id);
+		service.deleteSupplier(id);
 	}
 }
